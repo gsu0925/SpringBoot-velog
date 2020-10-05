@@ -11,7 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.springboot.velog.core.FileBoard.service.FileBoardService;
 import com.springboot.velog.core.FileBoard.vo.FileBoardVO;
@@ -24,7 +23,7 @@ public class FileBoardController {
 	private FileBoardService fbservice;
 	
 	// 목록 조회
-	@RequestMapping(value="/list", method=RequestMethod.GET)
+	@RequestMapping(value="/list")
 	public String fileBoardList (Model model, HttpServletRequest request) {
 		
 		List<FileBoardVO> testList = new ArrayList<>();
@@ -34,21 +33,21 @@ public class FileBoardController {
 	}
 	
 	// 상세 조회
-	@RequestMapping(value="/detail/{b_no}", method=RequestMethod.GET)
+	@RequestMapping(value="/detail/{b_no}")
 	public String fileBoardDetail (@PathVariable("b_no") int b_no, Model model) {
 		model.addAttribute("detail", fbservice.fileBoardDetail(b_no));
 		return "fileboard/detail";
 	}
 
 	//글 등록
-	@RequestMapping(value="/add")
+	@RequestMapping(value="/insert")
 	public String insertFileBoardForm(@ModelAttribute FileBoardVO fb) {
 		return "fileboard/insert";
 	}
-	@RequestMapping(value="/addProc", method=RequestMethod.POST)
+	@RequestMapping(value="/insertProc")
 	public String insertFileBoardProc(@ModelAttribute FileBoardVO fb, HttpServletRequest request) {
 		fbservice.insertFileBoard(fb);
-		return "forward:/fileboard/list"; //객체 재사용
+		return "forward:/fileBoard/list"; //객체 재사용
 	}
 
 	// 글 수정
@@ -57,19 +56,19 @@ public class FileBoardController {
 		model.addAttribute("detail", fbservice.fileBoardDetail(b_no));
 		return "fileboard/update";
 	}
-	@RequestMapping(value="/updateProc", method=RequestMethod.PUT)
+	@RequestMapping(value="/updateProc")
 	public String updateFileBoardProc(@ModelAttribute FileBoardVO fb) {
 		fbservice.updateFileBoard(fb);
 		int bno = fb.getB_no();
 		String b_no = Integer.toString(bno);
 		
-		return "redirect:/fileboard/detail/"+b_no;
+		return "redirect:/fileBoard/detail/"+b_no;
 	}
 	
 	// 글 삭제
-	@RequestMapping(value="/delete/{b_no}", method=RequestMethod.POST)
+	@RequestMapping(value="/delete/{b_no}")
 	public String deleteFileBoard(@PathVariable("b_no") int b_no) {
 		fbservice.deleteFileBoard(b_no);
-		return "redirect:/fileboard/list";
+		return "redirect:/fileBoard/list";
 	}
 }

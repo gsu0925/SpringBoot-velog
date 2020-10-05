@@ -3,42 +3,49 @@
 <head>
 	<meta charset="UTF-8">
 	<title>파일게시판 - 리스트</title>
+	<style type="text/css">
+	li {
+		list-style: none;
+		float: left;
+	}
+	</style>
 </head>
 <body>
-	<div>
+ <div>
 	<div style="padding: 10px; text-align: center;">
-		<h3><a th:href="@{/fileboard/list}> style="text-decoration: none;">파일 게시판</a></h3>
+		<h3><a th:href="@{/fileBoard/list}" style="text-decoration: none;">파일 게시판</a></h3>
 	</div>
-	
 	
 	<div>
 	 <table class="table table-bordered" width="100%" cellspacing="0">
 	 <thead style="text-align: center;">
 		<tr>
-			<th style="text-align: center;">NO</th>
+			<th style="text-align: center;">No</th>
 			<th style="text-align: center;">Writer</th>
 			<th style="text-align: center;">Title</th>
+			<th style="text-align: center;">Content</th>
 			<th style="text-align: center;">Date</th>
 		</tr>
 	 </thead>
 	 <tbody>
 	 <tr th:each="data : ${testList}" th:onclick=
-	 	"'window.location.href = \'' + @{/fileboard/detail/{bno} (bno=${data.b_no})} + '\''">
-			<td th:text="${data.b_no}" style="cursor: pointer; ext-align: center;"></td>
-			<td th:text="${data.writer}" style="cursor: pointer; ext-align: center;"></td>
-			<td th:text="${data.title}" style="cursor: pointer; ext-align: center;"></td>
-			<td th:text="${data.reg_dt}" style="cursor: pointer; ext-align: center;"></td>
+	 	"'window.location.href = \'' + @{/fileBoard/detail/{bno} (bno=${data.b_no})} + '\''">
+			<td th:text="${data.b_no}" style="cursor: pointer; text-align: center;"></td>
+			<td th:text="${data.writer}" style="cursor: pointer; text-align: center;"></td>
+			<td th:text="${data.title}" style="cursor: pointer; text-align: center;"></td>
+			<td th:text="${data.content}" style="cursor: pointer; text-align: center;"></td>
+			<td th:text="${#dates.format(data.reg_dt, 'yyyy-MM-dd HH:mm:ss')}" style="cursor: pointer; text-align: center;"></td>
 		</tr>
 	 </tbody>
 	 </table>
 	</div>
 	
 	<div style="text-align: right;">
-		<button onclilc="location.href='/fileboard/add'">글 작성</button>
+		<button style="cursor: pointer;" onclick="location.href='/fileBoard/insert'">글 작성</button>
 	</div>
 	
 	<br><br>
 	
-	</div>
+ </div>
 </body>
 </html>

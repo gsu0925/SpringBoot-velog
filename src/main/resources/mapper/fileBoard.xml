@@ -66,7 +66,7 @@
 		<if test="content != null and content != ''">
 				content = #{content}
 		</if>
-				, update_dt = SYSDATE
+				, update_dt = now()
 		where	b_no = #{b_no}
 	</update>
 	
