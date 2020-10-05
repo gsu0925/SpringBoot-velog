@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+					"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.velog.core.FileBoard.mapper.FileBoardMapper">
+
+	<select id="getFileBoardList"
+			resultType="com.springboot.velog.core.FileBoard.vo.FileBoardVO">
+		SELECT * FROM file_boardtbl
+		ORDER BY b_no
+			
+	</select>
+
+	<select id="fileBoardDetail"
+			parameterType="int" 
+			resultType="com.springboot.velog.core.FileBoard.vo.FileBoardVO">
+		SELECT 		b_no
+					, writer
+					, title
+					, content
+					, reg_dt
+		FROM 		file_boardtbl
+		WHERE		b_no = #{b_no}
+	</select>
+	
+	
+	<insert id="insertFileBoard"
+			parameterType="com.springboot.velog.core.FileBoard.vo.FileBoardVO" 
+			useGeneratedKeys="true" keyProperty="b_no">
+		insert
+		into	file_boardtbl (
+					  writer
+					, title
+					, content
+					, reg_dt
+				)
+		values	(
+					  #{writer}
+					, #{title}
+					, #{content}
+					, now()
+				)
+	</insert>
+	
+	<!-- <select id="selectViewDetail"
+			resultType="com.springboot.velog.core.FileBoard.vo.FileBoardVO">
+		select 		  id AS userId
+					, title
+					, contents
+					, reg_dt
+					, update_dt
+		from 		boardtbl
+		where	title = #{title}
+			
+	</select>  -->
+	
+	<update id="updateFileBoard"
+			parameterType="com.springboot.velog.core.FileBoard.vo.FileBoardVO">
+		update	file_boardtbl
+		set		
+		<if test="title != null and title != ''">
+				title = #{title}
+		</if>
+		<if test="title != null and content != null">
+				,
+		</if>
+		<if test="content != null and content != ''">
+				content = #{content}
+		</if>
+				, update_dt = SYSDATE
+		where	b_no = #{b_no}
+	</update>
+	
+	<delete id="deleteFileBoard"
+			parameterType="int">
+		delete
+		from	file_boardtbl
+		where	b_no = #{b_no}
+	</delete>
+	
+
+</mapper>

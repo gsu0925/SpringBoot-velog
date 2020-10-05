@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+	<!-- <property name="LOG_PATH" value="/home/hvp/web/logs" /> -->
+	<property name="LOCAL_LOG_PATH" value="D:\\dev_springboot_log" />
+
+	<!-- 콘솔 로그 출력 -->
+	<appender name="CONSOLE"
+		class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<charset>UTF-8</charset>
+			<Pattern>%d [%thread][%-5level] %c [%method] : %msg%n</Pattern>
+		</encoder>
+	</appender>
+
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+	</root>
+</configuration>
