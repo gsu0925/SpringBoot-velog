@@ -29,7 +29,7 @@
 	 </thead>
 	 <tbody>
 	 <tr th:each="data : ${testList}" th:onclick=
-	 	"'window.location.href = \'' + @{/fileBoard/detail/{bno} (bno=${data.b_no})} + '\''">
+	 	"'window.location.href = \'' + @{/fileBoard/update/{bno} (bno=${data.b_no})} + '\''">
 			<td th:text="${data.b_no}" style="cursor: pointer; text-align: center;"></td>
 			<td th:text="${data.writer}" style="cursor: pointer; text-align: center;"></td>
 			<td th:text="${data.title}" style="cursor: pointer; text-align: center;"></td>
