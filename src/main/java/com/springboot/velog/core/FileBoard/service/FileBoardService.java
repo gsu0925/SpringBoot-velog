@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.springboot.velog.core.FileBoard.mapper.FileBoardMapper;
 import com.springboot.velog.core.FileBoard.vo.FileBoardVO;
+import com.springboot.velog.core.FileBoard.vo.FileMultipartVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -35,6 +36,15 @@ public class FileBoardService {
 	
 	public int deleteFileBoard(int b_no) {
 		return fileBoardMapper.deleteFileBoard(b_no);
+	}
+	
+	// 파일 업로드
+	public int insertFile(FileMultipartVO file) {
+		return fileBoardMapper.insertFile(file);
+	}
+	// 파일 다운로드
+	public FileMultipartVO fileDetail(int b_no) {
+		return fileBoardMapper.fileDetail(b_no);
 	}
 	
 }

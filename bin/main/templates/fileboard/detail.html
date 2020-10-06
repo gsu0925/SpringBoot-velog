@@ -32,6 +32,12 @@
 		 </div>
 		 <div>
 			<label style="font-weight: bolder;">첨부 파일</label>
+			<!-- 첨부파일 -->
+			<p>
+				<a th:if="${file}" th:href="@{/fileBoard/fileDown/{bno} (bno=${file.b_no})}">
+				[[${file.originfilenm}]]</a>
+			<!-- <br>[[${file.b_no}]] -->
+			</p>
 		 </div>
 		 <div>
 			<label for="" style="font-weight: bolder;">내용</label>

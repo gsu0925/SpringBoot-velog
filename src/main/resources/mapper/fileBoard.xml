@@ -26,14 +26,14 @@
 	<insert id="insertFileBoard"
 			parameterType="com.springboot.velog.core.FileBoard.vo.FileBoardVO" 
 			useGeneratedKeys="true" keyProperty="b_no">
-		insert
-		into	file_boardtbl (
+		INSERT
+		INTO	file_boardtbl (
 					  writer
 					, title
 					, content
 					, reg_dt
 				)
-		values	(
+		VALUES	(
 					  #{writer}
 					, #{title}
 					, #{content}
@@ -55,8 +55,8 @@
 	
 	<update id="updateFileBoard"
 			parameterType="com.springboot.velog.core.FileBoard.vo.FileBoardVO">
-		update	file_boardtbl
-		set		
+		UPDATE	file_boardtbl
+		SET		
 		<if test="title != null and title != ''">
 				title = #{title}
 		</if>
@@ -67,15 +67,45 @@
 				content = #{content}
 		</if>
 				, update_dt = now()
-		where	b_no = #{b_no}
+		WHERE	b_no = #{b_no}
 	</update>
 	
 	<delete id="deleteFileBoard"
 			parameterType="int">
-		delete
-		from	file_boardtbl
-		where	b_no = #{b_no}
+		DELETE
+		FROM	file_boardtbl
+		WHERE	b_no = #{b_no}
 	</delete>
+	
+	<!-- 파일 업로드 -->
+	<insert id="insertFile"
+			parameterType="com.springboot.velog.core.FileBoard.vo.FileMultipartVO">
+		<selectKey keyProperty="b_no" resultType="int" order="BEFORE">
+		SELECT MAX(b_no)
+		FROM   file_boardtbl
+		</selectKey>
+		INSERT 
+		INTO 	filetbl (
+				  b_no
+				, filenm
+				, originfilenm
+				, fileurl
+				)
+		VALUES (
+				  #{b_no}
+				, #{filenm}
+				, #{originfilenm}
+				, #{fileurl}
+				)
+	</insert>
+	
+	<select id="fileDetail"
+			parameterType="int"
+			resultType="com.springboot.velog.core.FileBoard.vo.FileMultipartVO">
+		SELECT 	*
+		FROM	filetbl
+		WHERE	b_no = #{b_no}	
+	</select>
 	
 
 </mapper>
