@@ -4,6 +4,15 @@
 <head>
 <meta charset="UTF-8">
 <title>SpringBoot-글 작성</title>
+<script type="text/javascript">
+	function page() {
+		alert("저장하시겠습니까");
+	}
+	function reset() {
+		alert("취소하시겠습니까?");
+	}
+	
+</script>
 </head>
 <body>
  <div>
@@ -33,9 +42,12 @@
 		 	<input type="file" name="files">
 		 </div>
 		 <div style="text-align: right;">
-		 	<input type="submit" th:value="목록" th:formaction="@{/fileBoard/list}">
-		 	<input type="submit" th:value="작성">
-		 	<input type="reset" th:value="취소">
+		 	<button><a th:href="@{/fileBoard/list}">목록</a></button>
+		 	<input type="submit" th:value="작성" th:formaction="@{/fileBoard/list}"
+		 		th:onclick="|javascript:page()|">
+		 	<button><a th:onclick="|javascript:reset()|" th:href="@{/fileBoard/list}">취소</a></button>
+		 	<!-- <input type="submit" th:value="취소" th:formaction="@{/fileBoard/list}"
+		 		th:onclick="|javascript:reset()|"> -->
 		</div>
 		</form>
 	</div>
