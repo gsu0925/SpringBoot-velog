@@ -26,7 +26,7 @@
 		 <div>
 			<label for="title" style="font-weight: bolder;">제 목 &nbsp;</label>
 			<input type="text" th:file="*{title}" id="title" name="title"
-				placeholder="제목을 입력하세요">
+				placeholder="제목을 입력하세요" required="required">
 		 </div>
 		 <div>
 			<label for="writer" style="font-weight: bolder;">작성자</label>
@@ -43,7 +43,7 @@
 		 </div>
 		 <div style="text-align: right;">
 		 	<button><a th:href="@{/fileBoard/list}">목록</a></button>
-		 	<input type="submit" th:value="작성">
+		 	<input type="submit" th:value="등록">
 		 	<button><a th:onclick="|javascript:reset()|" th:href="@{/fileBoard/list}">취소</a></button>
 		 	<!-- <input type="submit" th:value="취소" th:formaction="@{/fileBoard/list}"
 		 		th:onclick="|javascript:reset()|"> -->

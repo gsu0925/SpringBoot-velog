@@ -19,13 +19,13 @@
 	<div>
 		<form role="form" th:object=${fileBoardVO} th:action="@{/fileBoard/updateProc}" method="post">
 		 <div>
-			<label for="title" style="font-weight: bolder;">제목</label>
+			<label for="title" style="font-weight: bolder;">제 목 &nbsp;</label>
 			<input type="text" id="title" name="title" th:value="${detail.title}">
 		 </div>
 		 <div>
 			<label for="writer" style="font-weight: bolder;">작성자</label>
 			<input type="text" id="writer" name="writer" th:value="${detail.writer}" disabled="disabled">
-		 </div>
+		 </div><br>
 		 <div>
 			<label for="content" style="font-weight: bolder;">내용</label><br>
 			<textarea id="content" name="content" rows="10" cols="50">[[${detail.content}]]
@@ -34,7 +34,7 @@
 		 <div style="text-align: right;">
 		 	<input type="hidden" name="b_no" th:value="${detail.b_no}">
 		 	<button><a th:href="@{/fileBoard/list}">목록</a></button>
-		 	<input type="submit" th:value="저장">
+		 	<input type="submit" th:value="수정완료">
 		 	<button><a th:onclick="|javascript:del()|" th:href="@{/fileBoard/delete/{bno} (bno=${detail.b_no})}">삭제</a></button>
 		 	<!-- input type="submit" th:value="삭제"
 		 		th:formaction="@{/fileBoard/delete/{bno} (bno=${detail.b_no})}"> -->

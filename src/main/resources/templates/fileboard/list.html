@@ -23,26 +23,23 @@
 			<th style="text-align: center;">No</th>
 			<th style="text-align: center;">Writer</th>
 			<th style="text-align: center;">Title</th>
-			<th style="text-align: center;">Content</th>
-			<!-- <th style="text-align: center;">File</th> -->
 			<th style="text-align: center;">Date</th>
 		</tr>
 	 </thead>
 	 <tbody>
-	 <tr th:each="data : ${testList}" th:onclick=
-	 	"'window.location.href = \'' + @{/fileBoard/update/{bno} (bno=${data.b_no})} + '\''">
-			<td th:text="${data.b_no}" style="cursor: pointer; text-align: center;"></td>
-			<td th:text="${data.writer}" style="cursor: pointer; text-align: center;"></td>
-			<td th:text="${data.title}" style="cursor: pointer; text-align: center;"></td>
-			<td th:text="${data.content}" style="cursor: pointer; text-align: center;"></td>
-			<td th:text="${#dates.format(data.reg_dt, 'yyyy-MM-dd HH:mm:ss')}" style="cursor: pointer; text-align: center;"></td>
+	 <tr th:each="data : ${testList}">
+			<td th:text="${data.b_no}" style="text-align: center;"></td>
+			<td th:text="${data.writer}" style="text-align: center;"></td>
+			<td th:text="${data.title}" style="cursor: pointer; text-align: center;"
+				th:onclick= "'window.location.href = \'' + @{/fileBoard/detail/{bno} (bno=${data.b_no})} + '\''"></td>
+			<td th:text="${#dates.format(data.reg_dt, 'yyyy-MM-dd HH:mm:ss')}" style="text-align: center;"></td>
 		</tr>
 	 </tbody>
 	 </table>
 	</div>
 	
 	<div style="text-align: right;">
-		<button style="cursor: pointer;" onclick="location.href='/fileBoard/insert'">글 작성</button>
+		<button style="cursor: pointer;" onclick="location.href='/fileBoard/insert'">글쓰기</button>
 	</div>
 	
 	<br><br>
