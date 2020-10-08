@@ -1,56 +1,118 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
 <head>
-<meta charset="UTF-8">
-<title>SpringBoot-글 작성</title>
-<script type="text/javascript">
-	function page() {
-		alert("저장하시겠습니까");
-	}
-	function reset() {
-		alert("취소하시겠습니까?");
-	}
-	
-</script>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Clean Blog - 글쓰기</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="/css/clean-blog.min.css" rel="stylesheet">
+
+  <header class="masthead" style="background-image: url('/img/bg1.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>POST</h1>
+            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <th:block th:include="common/header"></th:block>
 </head>
+
 <body>
- <div>
-	<div style="padding: 10px; text-align: center;">
-		<h3><a th:href="@{/fileBoard/list}" style="text-decoration: none;">글 작성</a></h3>
-	</div>
-	
-	<div>
-		<form role="form" th:object=${fileBoardVO} th:action="@{/fileBoard/insertProc}"
-		 method="post" enctype="multipart/form-data">
-		 <div>
-			<label for="title" style="font-weight: bolder;">제 목 &nbsp;</label>
-			<input type="text" th:file="*{title}" id="title" name="title"
-				placeholder="제목을 입력하세요" required="required">
-		 </div>
-		 <div>
-			<label for="writer" style="font-weight: bolder;">작성자</label>
-			<input type="text" th:file="writer" id="writer" name="writer"
-				placeholder="작성자를 입력하세요">
-		 </div>
-		 <div style="font-weight: bolder;">
-			<label for="content">내용</label><br>
-			<textarea th:field="*{content}" id="content" name="content" rows="15" cols="50"
-				placeholder="내용을 입력하세요" required="required"></textarea>
-		 </div>
-		 <div>
-		 	<input type="file" name="files">
-		 </div>
-		 <div style="text-align: right;">
-		 	<button><a th:href="@{/fileBoard/list}">목록</a></button>
-		 	<input type="submit" th:value="등록">
-		 	<button><a th:onclick="|javascript:reset()|" th:href="@{/fileBoard/list}">취소</a></button>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+        <h3><a th:href="@{/fileBoard/list}" style="text-decoration: none;">글 작성</a></h3>
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <nav aria-label="breadcrumb">
+		  <ol class="breadcrumb">
+		    <li class="breadcrumb-item"><a th:href="@{/fileBoard/list}">Home</a></li>
+		    <li class="breadcrumb-item active" aria-current="page">글쓰기</li>
+		  </ol>
+		</nav>
+        
+        <form role="form" th:object=${fileBoardVO} th:action="@{/fileBoard/insertProc}"
+		 	method="post" enctype="multipart/form-data" name="sentMessage" id="contactForm" novalidate>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label for="title">제목</label>
+              <input type="text" class="form-control" th:file="*{title}" id="title" name="title"
+				placeholder="제목을 입력하세요" required data-validation-required-message="제목을 입력하세요.">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label for="writer">작성자</label>
+              <input type="text" class="form-control" th:file="writer" id="writer" name="writer"
+				placeholder="작성자를 입력하세요" required data-validation-required-message="작성자를 입력하세요.">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label for="content">내용</label>
+              <textarea class="form-control" th:field="*{content}" id="content" name="content" rows="15" cols="50"
+				placeholder="내용을 입력하세요" required data-validation-required-message="내용을 입력하세요."></textarea>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+          
+			  <div class="btn btn-primary">
+			    <input type="file" name="files" id="file" style="display:none;">
+			    <button th:onClick="onclick=document.file.click()">사진</button>
+			  </div>
+			
+          </div>
+          <br>
+          <div id="success">
+		 	<button class="btn btn-primary float-right"><a th:onclick="|javascript:reset()|" th:href="@{/fileBoard/list}">취소</a></button>
+		 	<button type="submit" class="btn btn-primary float-right">등록</button>
 		 	<!-- <input type="submit" th:value="취소" th:formaction="@{/fileBoard/list}"
 		 		th:onclick="|javascript:reset()|"> -->
-		</div>
-		</form>
-	</div>
-	<br><br><br>
- </div>
+		 	</div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <th:block th:replace="common/footer">
+   </th:block>
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Contact Form JavaScript -->
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
 </body>
+
 </html>

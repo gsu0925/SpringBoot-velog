@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Clean Blog - 글쓰기</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href="css/clean-blog.min.css" rel="stylesheet">
+
+  <header class="masthead" style="background-image: url('/img/bg1.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>POST</h1>
+            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <th:block th:include="common/header"></th:block>
+</head>
+
+<body>
+
+  <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <p><h3><a th:href="@{/fileBoard/list}" style="text-decoration: none;">글 작성</a></h3></p>
+        <!-- Contact Form - Enter your email address on line 19 of the mail/contact_me.php file to make this form work. -->
+        <!-- WARNING: Some web hosts do not allow emails to be sent through forms to common mail hosts like Gmail or Yahoo. It's recommended that you use a private domain email address! -->
+        <!-- To use the contact form, your site must be on a live web host with PHP! The form will not work locally! -->
+        <form role="form" th:object=${fileBoardVO} th:action="@{/fileBoard/insertProc}"
+		 	method="post" enctype="multipart/form-data" name="sentMessage" id="contactForm" novalidate>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label for="title">제목</label>
+              <input type="text" class="form-control" th:file="*{title}" id="title" name="title"
+				placeholder="제목을 입력하세요" required data-validation-required-message="제목을 입력하세요.">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label for="writer">작성자</label>
+              <input type="text" class="form-control" th:file="writer" id="writer" name="writer"
+				placeholder="작성자를 입력하세요" required data-validation-required-message="작성자를 입력하세요.">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label for="content">내용</label>
+              <textarea rows="5" class="form-control" th:field="*{content}" id="content" name="content" rows="15" cols="50"
+				placeholder="내용을 입력하세요" required data-validation-required-message="내용을 입력하세요."></textarea>
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <br>
+          <div id="success">
+          <!-- <button><a th:href="@{/fileBoard/list}">목록</a></button> -->
+		 	<button type="submit"  class="btn btn-primary" th:value="등록">
+		 	<button><a th:onclick="|javascript:reset()|" th:href="@{/fileBoard/list}">취소</a></button>
+		 	<!-- <input type="submit" th:value="취소" th:formaction="@{/fileBoard/list}"
+		 		th:onclick="|javascript:reset()|"> -->
+		 	</div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <!-- Footer -->
+  <th:block th:replace="common/footer">
+   </th:block>
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Contact Form JavaScript -->
+  <script src="js/jqBootstrapValidation.js"></script>
+  <script src="js/contact_me.js"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="js/clean-blog.min.js"></script>
+
+</body>
+
+</html>
