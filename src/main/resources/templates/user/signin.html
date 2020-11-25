@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Clean Blog - 로그인</title>
+ <!-- Bootstrap core CSS -->
+  <link th:href="@{/vendor/bootstrap/css/bootstrap.min.css}" rel="stylesheet" />
+
+  <!-- Custom fonts for this template -->
+  <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <!-- index.html 고유 CSS 추가 -->
+  	<link href="/css/clean-blog.min.css" rel="stylesheet">
+  	
+	<header class="masthead" style="background-image: url('/img/bg3.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>SpringBoot Blog</h1>
+            <span class="subheading">A Blog Theme by Start Bootstrap</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </header>
+	<th:block th:include="common/header"></th:block>
+</head>
+<body>
+	<div class="container">
+ 	<div id="layoutAuthentication">
+         <div id="layoutAuthentication_content">
+         	<main>
+         		<div class="container">
+         			<div class="row justify-content-center">
+                         <div class="col-lg-5">
+                             <div class="card shadow-lg border-0 rounded-lg mt-2">
+                                 <div class="card-header"><h3 class="text-center font-weight-light my-4">Login</h3></div>
+                                 <div class="card-body">
+                                     <form>
+                                         <!-- <div class="form-group">
+                                         	<label class="small mb-1" for="inputEmailAddress">Email</label>
+                                         	<input class="form-control py-4" id="inputEmailAddress" type="email" placeholder="Enter email address" />
+                                         </div> -->
+                                         <div class="form-group">
+                                         	<label class="small mb-1" for="inputId">Email</label>
+                                         	<input class="form-control py-4" id="inputId" type="id" placeholder="Enter your ID" />
+                                         </div>
+                                         <div class="form-group">
+                                         	<label class="small mb-1" for="inputPassword">Password</label>
+                                         	<input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" />
+                                         </div>
+                                         <div class="form-group">
+                                             <div class="custom-control custom-checkbox">
+                                             <input class="custom-control-input" id="rememberPasswordCheck" type="checkbox" />
+                                             <label class="custom-control-label" for="rememberPasswordCheck">Remember password</label>
+                                             </div>
+                                         </div>
+                                         <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+                                        	<a class="small" href="password.html">Forgot Password?</a>
+                                        	<a class="btn btn-primary" href="index.html">Login</a>
+                                        </div>
+                                     </form>
+                                 </div>
+                                 <div class="card-footer text-center">
+                                     <div class="small"><a href="register.html">Need an account? Sign up!</a></div>
+                                 </div>
+                             </div>
+                         </div>
+                     </div>
+                 </div>
+             </main>
+         </div>
+      </div>
+
+	<th:block th:replace="common/footer"></th:block>
+	</div>
+	
+</body>
+</html>
